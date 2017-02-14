@@ -14,7 +14,7 @@ public class OI {
    Joystick leftstick;
    Joystick rightstick;
    Button Right3;
-	//SHWSRGSGR
+   Button ABCDEF;
    public OI(){
 	   leftstick=new Joystick(1);
 	   rightstick=new Joystick (0);
