@@ -20,7 +20,7 @@ public class CamSystem extends Subsystem {
 	//figure out what ratio we really want
 	int ImgW = 1280; int ImgH = 720;
 	float CenterLeftRec; float CenterRightRec;
-	volatile float RealCenter;
+	volatile float RealCenter; volatile float HorDis;
 	float WantCenter = ImgW/2;
 	public VisionThread vt;
 	public Object imgSync = new Object();
@@ -41,7 +41,8 @@ public class CamSystem extends Subsystem {
 					synchronized (imgSync){CenterLeftRec = boundLeft.x + (boundLeft.width/2);
 					CenterRightRec = boundRight.x + (boundRight.width/2);
 					//for finding on cordinate
-					RealCenter = ((CenterLeftRec + CenterRightRec)/2);}}}); 
+					RealCenter = ((CenterLeftRec + CenterRightRec)/2);
+			    	HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);}}}); 
 		if(CamOn = true){
 			if(FirstCamCycle=true){vt.start();} else{vt.notify();} System.out.println("Camera Turning On...");} 
 		if(CamOn = false){

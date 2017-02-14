@@ -51,14 +51,13 @@ public class DriveTrain extends Subsystem {
     public void horizontalGear(){
     	//make sure to get correct positive or negative value
     	//might need to sync with vt
-    	float dis = (Robot.cs.WantCenter - Robot.cs.RealCenter);
     	
     	if(Robot.ds.IRBreak = true){
     	/*might need if | might need to widen gap for values to account for errors */
     		Robot.ds.HorTime.reset(); Robot.ds.HorTime.start(); Robot.cs.CamOn = true;
-    		while(dis > .5){Horizontal.set(.25); Right = true;}
-    		while(dis < -.5){Horizontal.set(-.25); Left = true;}
-    		if(-.5 < dis && dis < .5){Horizontal.set(0); Robot.ds.HorTime.stop(); new GiveGear();}}}
+    		while(Robot.cs.HorDis > .5){Horizontal.set(.25); Right = true;}
+    		while(Robot.cs.HorDis < -.5){Horizontal.set(-.25); Left = true;}
+    		if(-.5 < Robot.cs.HorDis && Robot.cs.HorDis < .5){Horizontal.set(0); Robot.ds.HorTime.stop(); new GiveGear();}}}
     
     public void ropeClimb(double cl){Rope.set(cl);}
     
