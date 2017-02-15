@@ -28,7 +28,9 @@ public class CamSystem extends Subsystem {
 	public boolean FirstCamCycle = true;
     
 	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
-	
+	//fine tune wait (in miliseconds)
+	private void ThreadSleep(){try{vt.wait(5);;} catch(InterruptedException e){e.printStackTrace(); 
+		System.out.println("Slept wrong?");}}
 	public void ImagePipe(){/* might need to change filter */
 		cam0.setResolution(ImgW, ImgH);
 		
@@ -42,7 +44,9 @@ public class CamSystem extends Subsystem {
 					CenterRightRec = boundRight.x + (boundRight.width/2);
 					//for finding on cordinate
 					RealCenter = ((CenterLeftRec + CenterRightRec)/2);
-			    	HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);}}}); 
+			    	HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);}} //Make sure the values are calculated then wait
+					ThreadSleep();});
+		
 		if(CamOn = true){
 			if(FirstCamCycle=true){vt.start();} else{vt.notify();} System.out.println("Camera Turning On...");} 
 		if(CamOn = false){

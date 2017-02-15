@@ -22,7 +22,6 @@ public class DriveTrain extends Subsystem {
 	CANTalon GearPlace = new CANTalon(6);
 	CANTalon Rope = new CANTalon(7);
 	
-	public boolean Left; public boolean Right;
 	/** Get Speed Values Needed */
 	public DriveTrain(){
 		//volts per second, test values (need speed this time)
@@ -48,16 +47,17 @@ public class DriveTrain extends Subsystem {
     public void placeGear(float go){GearPlace.set(go);}
     public void autoHorizontal(float move){Horizontal.set(move);}
         
+	private float Dis; public boolean Left; public boolean Right;
     public void horizontalGear(){
     	//make sure to get correct positive or negative value
-    	//might need to sync with vt
-    	
+    	//might need to sync?
+    	synchronized(Robot.cs.imgSync){Dis = Robot.cs.HorDis;}
     	if(Robot.ds.IRBreak = true){
     	/*might need if | might need to widen gap for values to account for errors */
     		Robot.ds.HorTime.reset(); Robot.ds.HorTime.start(); Robot.cs.CamOn = true;
-    		while(Robot.cs.HorDis > .5){Horizontal.set(.25); Right = true;}
-    		while(Robot.cs.HorDis < -.5){Horizontal.set(-.25); Left = true;}
-    		if(-.5 < Robot.cs.HorDis && Robot.cs.HorDis < .5){Horizontal.set(0); Robot.ds.HorTime.stop(); new GiveGear();}}}
+    		if(Dis > .5){Horizontal.set(.25); Right = true;}
+    		else if(Dis < -.5){Horizontal.set(-.25); Left = true;}
+    		else if(-.5 < Dis && Dis < .5){Horizontal.set(0); Robot.ds.HorTime.stop(); new GiveGear();}}}
     
     public void ropeClimb(double cl){Rope.set(cl);}
     
