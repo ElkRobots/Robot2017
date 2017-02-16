@@ -33,8 +33,8 @@ public class HorizontalReset extends Command {
 
     // Called once after isFinished returns true
     protected void end() {Robot.dt.autoHorizontal(0); backTime.stop(); Robot.ds.HorTime.stop();
-	  					Robot.dt.Right = false; Robot.dt.Left = false; Robot.ds.IRCount.reset();
-	  					Robot.cs.CamOn = false; Robot.cs.FirstCamCycle = false;}
+	  					Robot.dt.Right = false; Robot.dt.Left = false; 
+	  					Robot.cs.CamOn = false; Robot.cs.FirstCamCycle = false; Robot.ds.IRCount.reset();}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

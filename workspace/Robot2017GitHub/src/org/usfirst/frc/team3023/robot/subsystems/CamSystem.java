@@ -29,13 +29,14 @@ public class CamSystem extends Subsystem {
     
 	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 	//fine tune wait (in miliseconds)
-	private void ThreadSleep(){try{vt.wait(5);;} catch(InterruptedException e){e.printStackTrace(); 
+	private void ThreadSleep(){try{vt.wait(25);;} catch(InterruptedException e){e.printStackTrace(); 
 		System.out.println("Slept wrong?");}}
 	public void ImagePipe(){/* might need to change filter */
 		cam0.setResolution(ImgW, ImgH);
 		
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
-			if(!Robot.gp.filterContoursOutput().isEmpty()){
+			//Make sure the amount in array is right
+			if(Robot.gp.filterContoursOutput().size() >= 2){
 				//need real array numbers for which contours to draw a bounding rectangle around
 				//r.x is top left corner
 				Rect boundLeft = Imgproc.boundingRect(Robot.gp.filterContoursOutput().get(0));
@@ -44,8 +45,8 @@ public class CamSystem extends Subsystem {
 					CenterRightRec = boundRight.x + (boundRight.width/2);
 					//for finding on cordinate
 					RealCenter = ((CenterLeftRec + CenterRightRec)/2);
-			    	HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);}} //Make sure the values are calculated then wait
-					ThreadSleep();});
+			    	HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);} //Make sure the values are calculated then wait
+					System.out.println("The Distance from Gear to Peg is: " + HorDis); ThreadSleep();}});
 		
 		if(CamOn = true){
 			if(FirstCamCycle=true){vt.start();} else{vt.notify();} System.out.println("Camera Turning On...");} 

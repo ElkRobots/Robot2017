@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3023.robot.subsystems;
 
+import org.usfirst.frc.team3023.robot.Robot;
+
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
@@ -28,7 +30,7 @@ public class DigitalSensors extends Subsystem {
 		else{return false;}}
 	
 	public void IRBeamBroken(){
-		if(IRCount.get() > 0){IRBreak = true;}
+		if(IRCount.get() > 0){IRBreak = true; if(Robot.cs.FirstCamCycle = false){System.out.println("GO Driver!");}}
 		else{IRBreak = false;}}
 		
     // Put methods for controlling this subsystem

@@ -54,7 +54,8 @@ public class DriveTrain extends Subsystem {
     	synchronized(Robot.cs.imgSync){Dis = Robot.cs.HorDis;}
     	if(Robot.ds.IRBreak = true){
     	/*might need if | might need to widen gap for values to account for errors */
-    		Robot.ds.HorTime.reset(); Robot.ds.HorTime.start(); Robot.cs.CamOn = true;
+    		//Alternate to Timer is a Counter method with LeftDis++ and while
+    		Robot.ds.HorTime.reset(); Robot.ds.HorTime.start(); System.out.println("Driver, Stop!"); Robot.cs.CamOn = true;
     		if(Dis > .5){Horizontal.set(.25); Right = true;}
     		else if(Dis < -.5){Horizontal.set(-.25); Left = true;}
     		else if(-.5 < Dis && Dis < .5){Horizontal.set(0); Robot.ds.HorTime.stop(); new GiveGear();}}}
