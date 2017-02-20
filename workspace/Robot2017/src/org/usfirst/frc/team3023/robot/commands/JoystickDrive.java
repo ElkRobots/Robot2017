@@ -18,7 +18,7 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(!Robot.oi.CamOn){Robot.dt.control(Robot.oi.leftstick, Robot.oi.rightstick);} /*Robot.dt.moveHandler(Robot.oi.leftstick);*/
+    	while(!Robot.ds.IRBeamBroken()){Robot.dt.control(Robot.oi.leftstick, Robot.oi.rightstick);} /*Robot.dt.moveHandler(Robot.oi.leftstick);*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

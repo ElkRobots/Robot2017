@@ -8,11 +8,16 @@ import org.usfirst.frc.team3023.robot.Robot;
 /**
  *
  */
-public class InitValues extends Command {
+public class AutoIRDriving extends Command {
 
-	public InitValues() {
+	private double left;
+	private double right;
+
+	public AutoIRDriving(double goLeft, double goRight) {
 		// Use requires() here to declare subsystem dependencies
-		// requires(Robot.exampleSubsystem);
+		// requires(Robot.dt);
+		left = goLeft;
+		right = goRight;
 	}
 
 	// Called just before this Command runs the first time
@@ -21,28 +26,20 @@ public class InitValues extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.dt.GearDone = true;
-		//Robot.oi.CamOn = false;
-		Robot.cs.FirstCamCycle = true;
-		Robot.cs.ThreadRan = false;
-		Robot.dt.Left = false;
-		Robot.dt.Right = false;
-		Robot.cs.cam0.setResolution(Robot.cs.ImgW, Robot.cs.ImgH);
-
+		Robot.dt.autoDrive(left, right);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return true;
+		return Robot.ds.IRBeamBroken();
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {
+	protected void end() {Robot.dt.autoDrive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
+	protected void interrupted() {end();
 	}
 }

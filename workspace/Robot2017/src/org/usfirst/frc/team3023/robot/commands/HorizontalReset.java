@@ -42,12 +42,12 @@ public class HorizontalReset extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.dt.setHorizontalMotor(0);
-		Robot.ds.HorTime.reset();
+		Robot.ds.HorTime.reset(); Robot.ds.IRCount.reset();
 		Robot.dt.Right = false;
 		Robot.dt.Left = false;
 		Robot.cs.ThreadRan = false;
 		Robot.cs.FirstCamCycle = true;
-		Robot.oi.GearDone = true;
+		Robot.dt.GearDone = true; new CheckIR();
 		System.out.println("Go Driver!");
 	}
 

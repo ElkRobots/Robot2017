@@ -19,8 +19,8 @@ public class CamSystem extends Subsystem {
 	// Commands.
 	// will the value stay after the command ends?
 	// figure out what ratio we really want
-	int ImgW = 640;
-	int ImgH = 480;
+	public int ImgW = 640;
+	public int ImgH = 480;
 	private double CenterLeftRec;
 	private double CenterRightRec;
 	private double RealCenter;
@@ -31,7 +31,7 @@ public class CamSystem extends Subsystem {
 	public boolean FirstCamCycle;
 	public boolean ThreadRan;
 
-	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
+	public UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 	// fine tune wait (in miliseconds)
 	/*
@@ -41,7 +41,6 @@ public class CamSystem extends Subsystem {
 	 */
 
 	public void ImagePipe(/*boolean cam*/) {/* might need to change filter */
-		cam0.setResolution(ImgW, ImgH);
 
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
 			// Make sure the amount in array is right
@@ -64,13 +63,13 @@ public class CamSystem extends Subsystem {
 			}
 		});
 
-		//if (cam) {
+		if (!Robot.oi.CamDone) {
 			vt.start();
 			if (FirstCamCycle) {
 				System.out.println("Camera Turning On...");
 			}
 		}
-	//}
+	}
 
 	public double getHorDis() {
 		return HorDis;

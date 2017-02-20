@@ -25,15 +25,15 @@ public class OI {
 	Button Left2 = new JoystickButton(leftstick, 2);
 	Button Left4 = new JoystickButton(leftstick, 4);
 	Button Left5 = new JoystickButton(leftstick, 5);
-	public boolean GearDone;
-	public boolean CamOn; // public boolean Manual = false;
+	public boolean CamDone;
+	//public boolean CamOn; // public boolean Manual = false;
 
 	public OI() {
 
 		Right3.whenActive(new ClimbNoLimit(1));
 		// positive is fowrad
 
-		Right2.whenActive(new CamSwitch(true, true));
+		//Right2.whenActive(new CamSwitch(true, true));
 
 		RightTrigger.whenPressed(new CatchGear());
 

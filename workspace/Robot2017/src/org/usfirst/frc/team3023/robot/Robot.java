@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import org.usfirst.frc.team3023.robot.commands.CheckIR;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3023.robot.commands.InitValues;
 import org.usfirst.frc.team3023.robot.commands.JoystickDrive;
@@ -44,8 +46,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		cs = new CamSystem();
 		dt = new DriveTrain();
-		// might not want to start pipeline right away
-
 		ds = new DigitalSensors();
 
 		new InitValues();
@@ -123,6 +123,7 @@ public class Robot extends IterativeRobot {
 		teleopCommand = new JoystickDrive();
 		teleopCommand.start();
 		new InitValues();
+		new CheckIR();
 	}
 
 	/**
