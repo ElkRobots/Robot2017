@@ -5,7 +5,6 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team3023.robot.GripPipeline;
 import org.usfirst.frc.team3023.robot.Robot;
-
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -29,19 +28,28 @@ public class CamSystem extends Subsystem {
 	public VisionThread vt;
 	public Object imgSync = new Object();
 	public boolean FirstCamCycle;
-	public boolean ThreadRan;
+	// public boolean ThreadRan;
 
 	public UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 	// fine tune wait (in miliseconds)
-	/*
-	 * private void ThreadSleep() { try { vt.wait(15); } catch
-	 * (InterruptedException e) { e.printStackTrace();
-	 * System.out.println("Slept wrong?"); } }
-	 */
 
-	public void ImagePipe(/*boolean cam*/) {/* might need to change filter */
+	public void ThreadSleep(long ms) {
+		try {
+			vt.wait(ms); System.out.println("Camera Going to Sleep...");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Slept wrong?");
+		}
+	}
 
+	public void ThreadWake() {
+		vt.notify(); System.out.println("Camera Waking Up...");
+	}
+
+	public void startImagePipe(/* boolean cam */) {
+		cam0.setResolution(ImgW, ImgH);
+		// The VisionThread class is a thread that continually executes even w/o a loop
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
 			// Make sure the amount in array is right
 			if (Robot.gp.filterContoursOutput().size() >= 2) {
@@ -55,20 +63,14 @@ public class CamSystem extends Subsystem {
 					CenterRightRec = boundRight.x + (boundRight.width / 2);
 					// for finding on cordinate
 					RealCenter = ((CenterLeftRec + CenterRightRec) / 2);
+					// might need to make HorDis not locked
 					HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);
 				} // Make sure the values are calculated then wait
 				System.out.println("The Distance from Gear to Peg is: " + HorDis);
-				ThreadRan = true;
-				// ThreadSleep();
-			}
-		});
-
-		if (!Robot.oi.CamDone) {
-			vt.start();
-			if (FirstCamCycle) {
-				System.out.println("Camera Turning On...");
-			}
-		}
+				Robot.dt.horizontalGear();
+				ThreadSleep(15);}});
+		vt.start();
+		System.out.println("Camera Turning On...");
 	}
 
 	public double getHorDis() {

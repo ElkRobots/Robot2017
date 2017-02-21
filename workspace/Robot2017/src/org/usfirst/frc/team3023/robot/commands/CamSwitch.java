@@ -17,14 +17,12 @@ public class CamSwitch extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.oi.CamDone = false; Robot.dt.GearDone = false;
+		Robot.oi.CamDone = false; Robot.dt.GearDone = false; Robot.cs.ThreadWake();
 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.cs.ImagePipe();
-		Robot.dt.horizontalGear();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

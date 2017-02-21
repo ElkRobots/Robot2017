@@ -64,9 +64,8 @@ public class DriveTrain extends Subsystem {
 		// make sure to get correct positive or negative value
 		//if (cam) {
 		/* might need to widen gap for values to account for errors */
-		if (!Robot.oi.CamDone && Robot.cs.ThreadRan) {
+		if (!Robot.oi.CamDone) {
 			Dis = Robot.cs.getHorDis();
-			Robot.cs.ThreadRan = false;
 
 			if (Robot.cs.FirstCamCycle) {
 				Robot.ds.HorTime.start();

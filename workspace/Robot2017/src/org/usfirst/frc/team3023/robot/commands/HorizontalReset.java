@@ -45,9 +45,8 @@ public class HorizontalReset extends Command {
 		Robot.ds.HorTime.reset(); Robot.ds.IRCount.reset();
 		Robot.dt.Right = false;
 		Robot.dt.Left = false;
-		Robot.cs.ThreadRan = false;
 		Robot.cs.FirstCamCycle = true;
-		Robot.dt.GearDone = true; new CheckIR();
+		Robot.dt.GearDone = true; new CheckIR(); Robot.cs.ThreadSleep(0);
 		System.out.println("Go Driver!");
 	}
 

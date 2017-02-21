@@ -22,12 +22,10 @@ public class InitValues extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.dt.GearDone = true;
-		//Robot.oi.CamOn = false;
+		Robot.oi.CamDone = true;
 		Robot.cs.FirstCamCycle = true;
-		Robot.cs.ThreadRan = false;
 		Robot.dt.Left = false;
 		Robot.dt.Right = false;
-		Robot.cs.cam0.setResolution(Robot.cs.ImgW, Robot.cs.ImgH);
 
 	}
 

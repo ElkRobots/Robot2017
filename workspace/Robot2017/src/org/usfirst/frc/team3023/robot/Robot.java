@@ -49,6 +49,8 @@ public class Robot extends IterativeRobot {
 		ds = new DigitalSensors();
 
 		new InitValues();
+		Robot.cs.startImagePipe();
+		Robot.cs.ThreadSleep(0);
 		// this is the original auto
 		// autonomousCommand=new AutoRun(0, false, 0);
 

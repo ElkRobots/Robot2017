@@ -1,10 +1,8 @@
 package org.usfirst.frc.team3023.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team3023.robot.commands.CamSwitch;
 import org.usfirst.frc.team3023.robot.commands.CatchGear;
 import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
 import org.usfirst.frc.team3023.robot.commands.ManualGear;
