@@ -67,7 +67,7 @@ public class CamSystem extends Subsystem {
 					HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);
 				} // Make sure the values are calculated then wait
 				System.out.println("The Distance from Gear to Peg is: " + HorDis);
-				Robot.dt.horizontalGear();
+				Robot.dt.horizontalGear(HorDis);
 				ThreadSleep(15);}});
 		vt.start();
 		System.out.println("Camera Turning On...");
