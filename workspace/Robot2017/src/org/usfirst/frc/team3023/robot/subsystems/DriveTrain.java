@@ -55,31 +55,31 @@ public class DriveTrain extends Subsystem {
 		GearPlace.set(move);
 	}
 
-	private double Dis;
+	// private double Dis;
 	public boolean Left;
 	public boolean Right;
 	public boolean GearDone;
 
-	public void horizontalGear(/*boolean cam*/) {
+	public void horizontalGear(double dis) {
 		// make sure to get correct positive or negative value
 		//if (cam) {
 		/* might need to widen gap for values to account for errors */
 		if (!Robot.oi.CamDone) {
-			Dis = Robot.cs.getHorDis();
+			// Dis = Robot.cs.getHorDis();
 
 			if (Robot.cs.FirstCamCycle) {
 				Robot.ds.HorTime.start();
 				Robot.cs.FirstCamCycle = false;
 			}
-			while (Dis > .5) {
+			while (dis > .5) {
 				Horizontal.set(.5);
 				Right = true;
 			}
-			while (Dis < -.5) {
+			while (dis < -.5) {
 				Horizontal.set(-.5);
 				Left = true;
 			}
-			if (-.5 < Dis && Dis < .5) {
+			if (-.5 < dis && dis < .5) {
 				Horizontal.set(0);
 				Robot.ds.HorTime.stop();
 				new GiveGear();
