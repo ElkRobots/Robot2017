@@ -62,9 +62,8 @@ public class DriveTrain extends Subsystem {
 
 	public void horizontalGear(double dis) {
 		// make sure to get correct positive or negative value
-		//if (cam) {
-		/* might need to widen gap for values to account for errors */
-		if (!Robot.oi.CamDone) {
+		// might need to widen gap for values to account for errors
+		//if (!Robot.oi.CamDone) {
 			// Dis = Robot.cs.getHorDis();
 
 			if (Robot.cs.FirstCamCycle) {
@@ -83,9 +82,9 @@ public class DriveTrain extends Subsystem {
 				Horizontal.set(0);
 				Robot.ds.HorTime.stop();
 				new GiveGear();
-				Robot.oi.CamDone=true;
+				//Robot.cs.ThreadSleep(0);
 			}
-		}
+		//}
 		/*
 		 * if (manual) { new GiveGearManual(); }
 		 */

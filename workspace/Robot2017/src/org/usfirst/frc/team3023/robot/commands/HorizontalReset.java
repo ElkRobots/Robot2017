@@ -20,7 +20,8 @@ public class HorizontalReset extends Command {
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	protected void initialize() {Robot.ds.IRCount.reset();
+	System.out.println("Go Driver!");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -42,12 +43,11 @@ public class HorizontalReset extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.dt.setHorizontalMotor(0);
-		Robot.ds.HorTime.reset(); Robot.ds.IRCount.reset();
+		Robot.ds.HorTime.reset();
 		Robot.dt.Right = false;
 		Robot.dt.Left = false;
 		Robot.cs.FirstCamCycle = true;
-		Robot.dt.GearDone = true; new CheckIR(); Robot.cs.ThreadSleep(0);
-		System.out.println("Go Driver!");
+		Robot.dt.GearDone = true; new CheckIR();// Robot.cs.ThreadSleep(0);
 	}
 
 	// Called when another command which requires one or more of the same

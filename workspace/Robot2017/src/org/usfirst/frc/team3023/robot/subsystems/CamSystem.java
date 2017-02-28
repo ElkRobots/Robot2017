@@ -32,9 +32,10 @@ public class CamSystem extends Subsystem {
 
 	public UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 
-	// fine tune wait (in miliseconds)
+	public void ThreadStart(){vt.start(); 
+	System.out.println("Camera Turning On...");}
 
-	public void ThreadSleep(long ms) {
+	/*public void ThreadSleep(long ms) {
 		try {
 			vt.wait(ms); System.out.println("Camera Going to Sleep...");
 		} catch (InterruptedException e) {
@@ -45,16 +46,16 @@ public class CamSystem extends Subsystem {
 
 	public void ThreadWake() {
 		vt.notify(); System.out.println("Camera Waking Up...");
-	}
+	}*/
 
-	public void startImagePipe(/* boolean cam */) {
+	public void initImagePipe() {
 		cam0.setResolution(ImgW, ImgH);
 		// The VisionThread class is a thread that continually executes even w/o a loop
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
+			if(Robot.ds.IRBeamBroken()){
 			// Make sure the amount in array is right
 			if (Robot.gp.filterContoursOutput().size() >= 2) {
-				// need real array numbers for which contours to draw a bounding
-				// rectangle around
+				// need real array numbers for which contours to draw a bounding rectangle around
 				// r.x is top left corner
 				Rect boundLeft = Imgproc.boundingRect(Robot.gp.filterContoursOutput().get(0));
 				Rect boundRight = Imgproc.boundingRect(Robot.gp.filterContoursOutput().get(1));
@@ -63,19 +64,11 @@ public class CamSystem extends Subsystem {
 					CenterRightRec = boundRight.x + (boundRight.width / 2);
 					// for finding on cordinate
 					RealCenter = ((CenterLeftRec + CenterRightRec) / 2);
-					// might need to make HorDis not locked
 					HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);
-				} // Make sure the values are calculated then wait
+				}
 				System.out.println("The Distance from Gear to Peg is: " + HorDis);
-				Robot.dt.horizontalGear(HorDis);
-				ThreadSleep(15);}});
-		vt.start();
-		System.out.println("Camera Turning On...");
-	}
-
-	public double getHorDis() {
-		return HorDis;
-	}
+				Robot.dt.horizontalGear(HorDis);}
+				/*ThreadSleep(15);*/}}); ThreadStart();}
 
 	public void initDefaultCommand() {
 		/*

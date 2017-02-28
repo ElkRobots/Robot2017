@@ -17,7 +17,7 @@ public class CamSwitch extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.oi.CamDone = false; Robot.dt.GearDone = false; Robot.cs.ThreadWake();
+		/*Robot.oi.CamDone = false;*/ Robot.dt.GearDone = false; //Robot.cs.ThreadWake();
 
 	}
 

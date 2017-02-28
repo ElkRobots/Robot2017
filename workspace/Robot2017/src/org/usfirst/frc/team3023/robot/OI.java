@@ -23,7 +23,7 @@ public class OI {
 	Button Left2 = new JoystickButton(leftstick, 2);
 	Button Left4 = new JoystickButton(leftstick, 4);
 	Button Left5 = new JoystickButton(leftstick, 5);
-	public boolean CamDone;
+	//public boolean CamDone;
 	//public boolean CamOn; // public boolean Manual = false;
 
 	public OI() {
