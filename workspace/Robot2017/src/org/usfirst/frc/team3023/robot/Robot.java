@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3023.robot.commands.CheckIR;
+import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3023.robot.commands.InitValues;
 import org.usfirst.frc.team3023.robot.commands.JoystickDrive;
@@ -47,6 +48,7 @@ public class Robot extends IterativeRobot {
 		cs = new CamSystem();
 		dt = new DriveTrain();
 		ds = new DigitalSensors();
+		gp = new GripPipeline();
 
 		new InitValues();
 		Robot.cs.initImagePipe();

@@ -19,6 +19,8 @@ public class GiveGear extends CommandGroup {
     	addSequential(new MoveGearTimed(-1, 1.5));
     	addParallel(new Print("Reseting Gear Handler..."));
     	addSequential(new HorizontalReset(Robot.ds.HorTime.get()));}
+    
+    protected void initialize(){Robot.cs.ThreadSleep(0);}
     	
     private class Print extends Command{String ln;
     	private Print(String ln) {ln=this.ln;}

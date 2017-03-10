@@ -18,11 +18,11 @@ public class AutoRun extends CommandGroup {
 
 		if (pegloc == 1) {
 			addSequential(new AutoIRDriving(.75, .75));
-			addSequential(new CamSwitch());
+			//addSequential(new CamSwitch());
 		}
 		if (pegloc == 2 && !linecross) {
 			addSequential(new AutoIRDriving(.75, .75));
-			addSequential(new CamSwitch());
+			//addSequential(new CamSwitch());
 		}
 
 		if (pegloc == 2 && linecross && left) {
@@ -46,7 +46,7 @@ public class AutoRun extends CommandGroup {
 
 		if (pegloc == 3) {
 			addSequential(new AutoIRDriving(.75, .75));
-			addSequential(new CamSwitch());
+			//addSequential(new CamSwitch());
 		}
 
 	}

@@ -14,26 +14,26 @@ public class ClimbNoLimit extends Command {
 	public ClimbNoLimit(int Newa) {
 		// Use requires() here to declare subsystem dependencies
 		// requires(Robot.dt); requires(Robot.ds); 
-		Newa=a; setTimeout(3);
+		Newa=a;
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	protected void initialize() {Robot.ds.IRCount.reset(); System.out.println("Right3 Pressed");
+		//Robot.dt.ropeClimb(a);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		Robot.dt.ropeClimb(a);
+	protected void execute() {Robot.dt.ropeClimb(a);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isTimedOut();
+		return true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.dt.ropeClimb(0);
 
 	}
 

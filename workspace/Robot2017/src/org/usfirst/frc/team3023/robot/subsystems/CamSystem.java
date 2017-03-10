@@ -35,7 +35,7 @@ public class CamSystem extends Subsystem {
 	public void ThreadStart(){vt.start(); 
 	System.out.println("Camera Turning On...");}
 
-	/*public void ThreadSleep(long ms) {
+	public void ThreadSleep(long ms) {
 		try {
 			vt.wait(ms); System.out.println("Camera Going to Sleep...");
 		} catch (InterruptedException e) {
@@ -46,14 +46,15 @@ public class CamSystem extends Subsystem {
 
 	public void ThreadWake() {
 		vt.notify(); System.out.println("Camera Waking Up...");
-	}*/
+	}
 
 	public void initImagePipe() {
-		cam0.setResolution(ImgW, ImgH);
-		// The VisionThread class is a thread that continually executes even w/o a loop
+		//cam0.setResolution(ImgW, ImgH);
+		cam0.setResolution(1280, 720); cam0.setFPS(30);
+
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
 			if(Robot.ds.IRBeamBroken()){
-			// Make sure the amount in array is right
+			// Makes sure the amount in array is right
 			if (Robot.gp.filterContoursOutput().size() >= 2) {
 				// need real array numbers for which contours to draw a bounding rectangle around
 				// r.x is top left corner

@@ -8,7 +8,6 @@ public class JoystickDrive extends Command {
 
 	public JoystickDrive() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
 		requires(Robot.dt);
     }
 
@@ -18,7 +17,8 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(!Robot.ds.IRBeamBroken()){Robot.dt.control(Robot.oi.leftstick, Robot.oi.rightstick);} /*Robot.dt.moveHandler(Robot.oi.leftstick);*/
+    	while(!Robot.ds.IRBeamBroken()){Robot.dt.control(Robot.oi.leftstick, Robot.oi.rightstick);}
+    	while(Robot.ds.IRBeamBroken()){Robot.dt.manualArm(Robot.oi.leftstick);}
     }
 
     // Make this return true when this Command no longer needs to run execute()

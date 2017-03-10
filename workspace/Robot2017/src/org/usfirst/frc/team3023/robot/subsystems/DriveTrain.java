@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 	// Get Port Numbers
-	CANTalon FrontLeft = new CANTalon(6);
+	CANTalon FrontLeft = new CANTalon(0);
 	CANTalon BackLeft = new CANTalon(2);
 	CANTalon FrontRight = new CANTalon(4);
 	CANTalon BackRight = new CANTalon(3);
-	public CANTalon Horizontal = new CANTalon(1);
-	VictorSP GearPlace = new VictorSP(0);
+	CANTalon Horizontal = new CANTalon(1);
+	VictorSP GearPlace = new VictorSP(9);
 	CANTalon Rope = new CANTalon(5);
 
 	/** Get Speed Values Needed */
@@ -50,7 +50,8 @@ public class DriveTrain extends Subsystem {
 		GearPlace.set(go);
 	}
 
-	// public void moveHandler(Joystick leftstick){Horizontal.set(leftstick.getX());}
+	// public void moveHandler(Joystick
+	// leftstick){Horizontal.set(leftstick.getX());}
 	public void setHorizontalMotor(double move) {
 		GearPlace.set(move);
 	}
@@ -63,36 +64,33 @@ public class DriveTrain extends Subsystem {
 	public void horizontalGear(double dis) {
 		// make sure to get correct positive or negative value
 		// might need to widen gap for values to account for errors
-		//if (!Robot.oi.CamDone) {
-			// Dis = Robot.cs.getHorDis();
+		// if (!Robot.oi.CamDone) {
+		// Dis = Robot.cs.getHorDis();
 
-			if (Robot.cs.FirstCamCycle) {
-				Robot.ds.HorTime.start();
-				Robot.cs.FirstCamCycle = false;
-			}
-			while (dis > .5) {
-				Horizontal.set(.5);
-				Right = true;
-			}
-			while (dis < -.5) {
-				Horizontal.set(-.5);
-				Left = true;
-			}
-			if (-.5 < dis && dis < .5) {
-				Horizontal.set(0);
-				Robot.ds.HorTime.stop();
-				new GiveGear();
-				//Robot.cs.ThreadSleep(0);
-			}
-		//}
-		/*
-		 * if (manual) { new GiveGearManual(); }
-		 */
+		if (Robot.cs.FirstCamCycle) {
+			Robot.ds.HorTime.start();
+			Robot.cs.FirstCamCycle = false;
+		}
+		while (dis > .5) {
+			Horizontal.set(.5);
+			Right = true;
+		}
+		while (dis < -.5) {
+			Horizontal.set(-.5);
+			Left = true;
+		}
+		if (-.5 < dis && dis < .5) {
+			Horizontal.set(0);
+			Robot.ds.HorTime.stop();
+			new GiveGear();
+		}
 	}
 
 	public void ropeClimb(double cl) {
 		Rope.set(cl);
 	}
+	
+	public void manualArm(Joystick LS){Horizontal.set(LS.getX()); GearPlace.set(LS.getY());}
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

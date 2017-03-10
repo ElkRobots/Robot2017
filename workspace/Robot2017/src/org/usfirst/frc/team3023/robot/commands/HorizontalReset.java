@@ -47,7 +47,7 @@ public class HorizontalReset extends Command {
 		Robot.dt.Right = false;
 		Robot.dt.Left = false;
 		Robot.cs.FirstCamCycle = true;
-		Robot.dt.GearDone = true; new CheckIR();// Robot.cs.ThreadSleep(0);
+		Robot.dt.GearDone = true; new CheckIR(); Robot.cs.ThreadWake();
 	}
 
 	// Called when another command which requires one or more of the same
