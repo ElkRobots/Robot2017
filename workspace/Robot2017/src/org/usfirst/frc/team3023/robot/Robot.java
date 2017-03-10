@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team3023.robot.commands.CheckButtons;
 import org.usfirst.frc.team3023.robot.commands.CheckIR;
 import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
@@ -51,7 +52,7 @@ public class Robot extends IterativeRobot {
 		gp = new GripPipeline();
 
 		new InitValues();
-		Robot.cs.initImagePipe();
+		Robot.cs.InitCam();
 		// this is the original auto
 		// autonomousCommand=new AutoRun(0, false, 0);
 
@@ -127,6 +128,8 @@ public class Robot extends IterativeRobot {
 		teleopCommand.start();
 		new InitValues();
 		new CheckIR();
+		new CheckButtons();
+		for(int i=0; i<100; i++){System.out.println(Robot.oi.rightstick.getRawButton(3)); Robot.dt.ropeClimb(i);}
 	}
 
 	/**
@@ -134,7 +137,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
 	}
 
 	/**

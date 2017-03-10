@@ -90,7 +90,7 @@ public class DriveTrain extends Subsystem {
 		Rope.set(cl);
 	}
 	
-	public void manualArm(Joystick LS){Horizontal.set(LS.getX()); GearPlace.set(LS.getY());}
+	public void manualArm(Joystick RS){Horizontal.set(RS.getX()); GearPlace.set(RS.getY());}
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

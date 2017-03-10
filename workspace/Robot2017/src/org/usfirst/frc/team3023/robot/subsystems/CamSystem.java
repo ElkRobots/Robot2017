@@ -50,7 +50,6 @@ public class CamSystem extends Subsystem {
 
 	public void initImagePipe() {
 		//cam0.setResolution(ImgW, ImgH);
-		cam0.setResolution(1280, 720); cam0.setFPS(30);
 
 		vt = new VisionThread(cam0, new GripPipeline(), pipeline -> {
 			if(Robot.ds.IRBeamBroken()){
@@ -70,6 +69,7 @@ public class CamSystem extends Subsystem {
 				System.out.println("The Distance from Gear to Peg is: " + HorDis);
 				Robot.dt.horizontalGear(HorDis);}
 				/*ThreadSleep(15);*/}}); ThreadStart();}
+	public void InitCam(){cam0.setResolution(800, 600); cam0.setFPS(30); System.out.println("Camera Turning On...");}
 
 	public void initDefaultCommand() {
 		/*

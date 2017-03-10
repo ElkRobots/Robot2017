@@ -21,7 +21,8 @@ public class DigitalSensors extends Subsystem {
 	//Counters sees at least 1 pulse because the constant steam stopped
 	//This is because the pull-up resistor is read for the value and when the switch is hit, 
 	//it connects to the ground and the charge goes to the path of least resistance so the read value goes down
-	public boolean isSwitchHit() {
+	public void CheckSensors(){}
+		public boolean isSwitchHit() {
 		return LimCount.get() > 0;
 	}
 

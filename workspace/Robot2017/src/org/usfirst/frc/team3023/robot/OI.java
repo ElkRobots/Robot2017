@@ -15,8 +15,8 @@ import org.usfirst.frc.team3023.robot.commands.ManualReset;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Joystick leftstick = new Joystick(1);
-	public Joystick rightstick = new Joystick(0);
+	public Joystick leftstick = new Joystick(0);
+	public Joystick rightstick = new Joystick(1);
 	Button Right3;
 	Button Right2 = new JoystickButton(rightstick, 2);
 	Button Right10 = new JoystickButton(rightstick, 10);
@@ -29,7 +29,7 @@ public class OI {
 	public OI() {
 		Right3 = new JoystickButton(rightstick, 3);
 		Left3 = new JoystickButton(leftstick, 3);
-		
+
 
 		Right3.whenPressed(new ClimbNoLimit(1));
 		Right3.whenReleased(new ClimbNoLimit(0));

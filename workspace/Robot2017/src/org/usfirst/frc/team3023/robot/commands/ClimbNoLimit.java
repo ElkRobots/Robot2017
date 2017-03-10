@@ -18,7 +18,7 @@ public class ClimbNoLimit extends Command {
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {Robot.ds.IRCount.reset(); System.out.println("Right3 Pressed");
+	protected void initialize() {System.out.println("Right3 Pressed");
 		//Robot.dt.ropeClimb(a);
 
 	}
