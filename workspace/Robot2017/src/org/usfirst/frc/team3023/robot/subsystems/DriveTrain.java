@@ -20,8 +20,6 @@ public class DriveTrain extends Subsystem {
 	CANTalon BackRight = new CANTalon(3);
 	CANTalon Horizontal = new CANTalon(1);
 	VictorSP GearPlace = new VictorSP(9);
-	CANTalon Rope = new CANTalon(5);
-
 	/** Get Speed Values Needed */
 	public DriveTrain() {
 		// volts per second, test values (need speed this time)
@@ -33,10 +31,11 @@ public class DriveTrain extends Subsystem {
 
 	public void control(Joystick getLeftStick, Joystick getRightStick) {
 		// adjust for speed | remove while if needed
-		FrontLeft.set(getLeftStick.getY() * Robot.oi.getRightZ());
-		BackLeft.set(getLeftStick.getY() * Robot.oi.getRightZ());
-		FrontRight.set(-(getRightStick.getY() * Robot.oi.getRightZ()));
-		BackRight.set(-(getRightStick.getY() * Robot.oi.getRightZ()));
+		//make expo
+		FrontLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
+		BackLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
+		FrontRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
+		BackRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
 	}
 
 	public void autoDrive(double left, double right) {
@@ -86,9 +85,7 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 
-	public void ropeClimb(double cl) {
-		Rope.set(cl);
-	}
+	
 	
 	public void manualArm(Joystick RS){Horizontal.set(RS.getX()); GearPlace.set(RS.getY());}
 

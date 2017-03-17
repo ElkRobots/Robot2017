@@ -9,6 +9,7 @@ import org.usfirst.frc.team3023.robot.commands.IRSwitch;
 import org.usfirst.frc.team3023.robot.commands.ManualGear;
 import org.usfirst.frc.team3023.robot.commands.ManualHorizontal;
 import org.usfirst.frc.team3023.robot.commands.ManualReset;
+import org.usfirst.frc.team3023.robot.commands.MoveGear;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,28 +18,24 @@ import org.usfirst.frc.team3023.robot.commands.ManualReset;
 public class OI {
 	public Joystick leftstick = new Joystick(0);
 	public Joystick rightstick = new Joystick(1);
-	Button Right3;
+	Button Right3 = new JoystickButton(rightstick, 3);
 	Button Right2 = new JoystickButton(rightstick, 2);
 	Button Right10 = new JoystickButton(rightstick, 10);
 	Button RightTrigger = new JoystickButton(rightstick, 1);
 	Button LeftTrigger = new JoystickButton(leftstick, 1);
-	Button Left3;
 	//public boolean CamDone;
 	//public boolean CamOn; // public boolean Manual = false;
 
 	public OI() {
-		Right3 = new JoystickButton(rightstick, 3);
-		Left3 = new JoystickButton(leftstick, 3);
-
-
 		Right3.whenPressed(new ClimbNoLimit(1));
 		Right3.whenReleased(new ClimbNoLimit(0));
 		Right2.whenPressed(new IRSwitch());
-		Left3.whenPressed(new IRSwitch());
 		
 		// positive is forward
 
 		RightTrigger.whenPressed(new CatchGear());
+		Right10.whenPressed(new MoveGear(1));
+		Right10.whenReleased(new MoveGear(0));
 
 		//Left3.whenPressed(new ManualReset());
 	}

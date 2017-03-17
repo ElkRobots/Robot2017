@@ -20,7 +20,7 @@ public class IRSwitch extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {Robot.ds.IRCount.reset(); System.out.println("Button Hit!");
+    protected void execute() {Robot.ds.IRCount.reset();
     }
 
     // Make this return true when this Command no longer needs to run execute()

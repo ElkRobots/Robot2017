@@ -16,7 +16,7 @@ public class InitValues extends Command {
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	protected void initialize() {System.out.println("Initalizing Values...");
 	}
 
 	// Called repeatedly when this Command is scheduled to run

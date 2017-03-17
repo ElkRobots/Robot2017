@@ -10,27 +10,25 @@ import org.usfirst.frc.team3023.robot.Robot;
  */
 public class MoveGear extends Command {
 
-	private int p; //private double wait;
+	private int p;
 	public MoveGear(int newGo) {
 		// Use requires() here to declare subsystem dependencies
 		// requires(Robot.dt);
-		p = newGo; //wait = newWait;
+		p = newGo;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		//moveTime.start();
-		//setTimer(25);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.dt.setGearMotor(p);;
+		Robot.dt.setGearMotor(p);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

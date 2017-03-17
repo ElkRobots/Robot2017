@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3023.robot.commands.CheckButtons;
 import org.usfirst.frc.team3023.robot.commands.CheckIR;
 import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
@@ -16,6 +15,8 @@ import org.usfirst.frc.team3023.robot.subsystems.CamSystem;
 import org.usfirst.frc.team3023.robot.subsystems.DigitalSensors;
 import org.usfirst.frc.team3023.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3023.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3023.robot.subsystems.PeripheryMotors;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain dt;
+	public static PeripheryMotors pm;
 	public static GripPipeline gp;
 	public static CamSystem cs;
 	public static DigitalSensors ds;
@@ -48,6 +50,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		cs = new CamSystem();
 		dt = new DriveTrain();
+		pm = new PeripheryMotors();
 		ds = new DigitalSensors();
 		gp = new GripPipeline();
 
@@ -56,6 +59,7 @@ public class Robot extends IterativeRobot {
 		// this is the original auto
 		// autonomousCommand=new AutoRun(0, false, 0);
 
+		//change to commands
 		Autochooser = new SendableChooser();
 		Autochooser.addDefault("NoIR Auto", new AutoRun(0, false, false, false));
 		Autochooser.addObject("Left Peg Auto", new AutoRun(1, true, false, false));
@@ -64,6 +68,7 @@ public class Robot extends IterativeRobot {
 		Autochooser.addObject("Middle Peg, Turn Right Auto", new AutoRun(2, true, false, true));
 		Autochooser.addObject("Right Peg Auto", new AutoRun(3, true, false, false));
 		SmartDashboard.putData("Auto mode", Autochooser);
+
 	}
 
 	/**
@@ -73,6 +78,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		new InitValues();
+		//Robot.pm.ropeClimb(0);
+
 	}
 
 	public void disabledPeriodic() {
@@ -92,6 +99,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) Autochooser.getSelected();
+		System.out.println(Autochooser.getSelected());
+
 
 		/**
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -128,8 +137,7 @@ public class Robot extends IterativeRobot {
 		teleopCommand.start();
 		new InitValues();
 		new CheckIR();
-		new CheckButtons();
-		for(int i=0; i<100; i++){System.out.println(Robot.oi.rightstick.getRawButton(3)); Robot.dt.ropeClimb(i);}
+		//Robot.pm.ropeClimb(1);
 	}
 
 	/**
