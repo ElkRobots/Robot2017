@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 		FrontLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
 		BackLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
 		FrontRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
-		BackRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
+		BackRight.set((getRightStick.getY() * Robot.oi.getRightZ())/2);
 	}
 
 	public void autoDrive(double left, double right) {
