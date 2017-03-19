@@ -8,13 +8,13 @@ import org.usfirst.frc.team3023.robot.Robot;
 /**
  *
  */
-public class IRSwitch extends Command {
-
-	private int sw;
-    public IRSwitch(int newSW) {
+public class AutoMiddlePegPlusTurn extends Command {
+	
+	private boolean left; private boolean right;
+    public AutoMiddlePegPlusTurn(boolean turnLeft, boolean turnRight) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.exampleSubsystem);
-        sw = newSW;
+        left = turnLeft; right = turnRight;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,8 @@ public class IRSwitch extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {Robot.ds.sw = sw;
+    protected void execute() {
+    	new AutoIRDrivingPlusTurn(.75, .75, left, right);
     }
 
     // Make this return true when this Command no longer needs to run execute()

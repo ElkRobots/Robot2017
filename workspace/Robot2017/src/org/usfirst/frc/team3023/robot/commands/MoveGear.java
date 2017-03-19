@@ -10,8 +10,8 @@ import org.usfirst.frc.team3023.robot.Robot;
  */
 public class MoveGear extends Command {
 
-	private int p;
-	public MoveGear(int newGo) {
+	private double p;
+	public MoveGear(double newGo) {
 		// Use requires() here to declare subsystem dependencies
 		// requires(Robot.dt);
 		p = newGo;
@@ -23,7 +23,7 @@ public class MoveGear extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.dt.setGearMotor(p);
+		Robot.pm.setGearMotor(p);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -32,10 +32,10 @@ public class MoveGear extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {Robot.dt.setGearMotor(0);}
+	protected void end() {}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	protected void interrupted() {Robot.dt.setGearMotor(0);
+	protected void interrupted() {end();
 	}
 }

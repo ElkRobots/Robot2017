@@ -18,8 +18,6 @@ public class DriveTrain extends Subsystem {
 	CANTalon BackLeft = new CANTalon(2);
 	CANTalon FrontRight = new CANTalon(4);
 	CANTalon BackRight = new CANTalon(3);
-	CANTalon Horizontal = new CANTalon(1);
-	VictorSP GearPlace = new VictorSP(9);
 	/** Get Speed Values Needed */
 	public DriveTrain() {
 		// volts per second, test values (need speed this time)
@@ -35,7 +33,7 @@ public class DriveTrain extends Subsystem {
 		FrontLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
 		BackLeft.set(-(getLeftStick.getY() * Robot.oi.getRightZ()));
 		FrontRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
-		BackRight.set((getRightStick.getY() * Robot.oi.getRightZ())/2);
+		BackRight.set((getRightStick.getY() * Robot.oi.getRightZ()));
 	}
 
 	public void autoDrive(double left, double right) {
@@ -44,51 +42,7 @@ public class DriveTrain extends Subsystem {
 		FrontRight.set(-(right));
 		BackRight.set(-(right));
 	}
-
-	public void setGearMotor(int go) {
-		GearPlace.set(go);
-	}
-
-	// public void moveHandler(Joystick
-	// leftstick){Horizontal.set(leftstick.getX());}
-	public void setHorizontalMotor(double move) {
-		GearPlace.set(move);
-	}
-
-	// private double Dis;
-	public boolean Left;
-	public boolean Right;
-	public boolean GearDone;
-
-	public void horizontalGear(double dis) {
-		// make sure to get correct positive or negative value
-		// might need to widen gap for values to account for errors
-		// if (!Robot.oi.CamDone) {
-		// Dis = Robot.cs.getHorDis();
-
-		if (Robot.cs.FirstCamCycle) {
-			Robot.ds.HorTime.start();
-			Robot.cs.FirstCamCycle = false;
-		}
-		while (dis > .5) {
-			Horizontal.set(.5);
-			Right = true;
-		}
-		while (dis < -.5) {
-			Horizontal.set(-.5);
-			Left = true;
-		}
-		if (-.5 < dis && dis < .5) {
-			Horizontal.set(0);
-			Robot.ds.HorTime.stop();
-			new GiveGear();
-		}
-	}
-
 	
-	
-	public void manualArm(Joystick RS){Horizontal.set(RS.getX()); GearPlace.set(RS.getY());}
-
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public void initDefaultCommand() {

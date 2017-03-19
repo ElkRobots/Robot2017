@@ -35,11 +35,11 @@ public class AutoIRDriving extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {Robot.dt.autoDrive(0, 0);
+	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(false, false);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	protected void interrupted() {end();
+	protected void interrupted() {Robot.dt.autoDrive(0, 0);
 	}
 }

@@ -21,11 +21,8 @@ public class InitValues extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.dt.GearDone = true;
+		Robot.pm.GearDone = true;
 		//Robot.oi.CamDone = true;
-		Robot.cs.FirstCamCycle = true;
-		Robot.dt.Left = false;
-		Robot.dt.Right = false;
 		System.out.println("Values Reset.");
 	}
 

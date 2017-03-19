@@ -27,7 +27,6 @@ public class CamSystem extends Subsystem {
 	private double HorDis;
 	public VisionThread vt;
 	public Object imgSync = new Object();
-	public boolean FirstCamCycle;
 	// public boolean ThreadRan;
 
 	public UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
@@ -67,7 +66,7 @@ public class CamSystem extends Subsystem {
 					HorDis = (Robot.cs.WantCenter - Robot.cs.RealCenter);
 				}
 				System.out.println("The Distance from Gear to Peg is: " + HorDis);
-				Robot.dt.horizontalGear(HorDis);}
+				Robot.pm.horizontalGear(HorDis);}
 				/*ThreadSleep(15);*/}}); ThreadStart();}
 	public void InitCam(){cam0.setResolution(800, 600); cam0.setFPS(30); System.out.println("Camera Turning On...");}
 

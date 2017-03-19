@@ -19,7 +19,6 @@ public class ClimbNoLimit extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.out.println("Right3 Pressed");
 	}
 
 	// Called repeatedly when this Command is scheduled to run

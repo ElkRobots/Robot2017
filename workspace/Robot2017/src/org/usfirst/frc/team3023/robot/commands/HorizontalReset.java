@@ -26,13 +26,13 @@ public class HorizontalReset extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.dt.Right) {
-			Robot.dt.setHorizontalMotor(-.5);
-		}
-		if (Robot.dt.Left) {
-			Robot.dt.setHorizontalMotor(.5);
-			;
-		}
+//		if (Robot.pm.Right) {
+//			Robot.pm.setHorizontalMotor(-.5);
+//		}
+//		if (Robot.pm.Left) {
+//			Robot.pm.setHorizontalMotor(.5);
+//			;
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -42,12 +42,8 @@ public class HorizontalReset extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.dt.setHorizontalMotor(0);
-		Robot.ds.HorTime.reset();
-		Robot.dt.Right = false;
-		Robot.dt.Left = false;
-		Robot.cs.FirstCamCycle = true;
-		Robot.dt.GearDone = true; new CheckIR(); Robot.cs.ThreadWake();
+		Robot.pm.setHorizontalMotor(0);
+		Robot.pm.GearDone = true; Robot.cs.ThreadWake();
 	}
 
 	// Called when another command which requires one or more of the same

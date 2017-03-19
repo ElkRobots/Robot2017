@@ -15,8 +15,8 @@ public class DigitalSensors extends Subsystem {
 	Counter LimCount = new Counter(LimSw);
 
 	DigitalInput IRBeam = new DigitalInput(1);
-	public Counter IRCount = new Counter(IRBeam);
-	public Timer HorTime = new Timer();
+	public Counter IRCount = new Counter(IRBeam);	
+	public int sw = 0;
 
 	//Counters sees at least 1 pulse because the constant steam stopped
 	//This is because the pull-up resistor is read for the value and when the switch is hit, 
@@ -26,7 +26,7 @@ public class DigitalSensors extends Subsystem {
 	}
 
 	public boolean IRBeamBroken() {
-		return IRCount.get() > 0;
+		return (IRCount.get()/* + sw*/) > 0;
 	}
 
 	// Put methods for controlling this subsystem

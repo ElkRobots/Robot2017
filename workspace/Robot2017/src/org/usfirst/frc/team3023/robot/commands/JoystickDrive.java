@@ -17,12 +17,16 @@ public class JoystickDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if(!Robot.ds.IRBeamBroken()) {
+		//if(!Robot.ds.IRBeamBroken()) {
 			Robot.dt.control(Robot.oi.leftstick, Robot.oi.rightstick);
-		}
+		
 
 		if(Robot.ds.IRBeamBroken()) {
-			Robot.dt.manualArm(Robot.oi.rightstick); Robot.dt.autoDrive(0, 0);
+			System.out.println("IR Broken!");
+		}
+		if(Robot.ds.sw > 0){
+			Robot.pm.manualArm(Robot.oi.rightstick); Robot.dt.autoDrive(0, 0);
+
 		}
 
 	}

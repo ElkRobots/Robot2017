@@ -8,14 +8,20 @@ import org.usfirst.frc.team3023.robot.Robot;
 /**
  *
  */
-public class ManualHorizontal extends Command {
+public class AutoIRDrivingPlusTurn extends Command {
 
-	private double go;
+	private double Driveleft;
+	private double Driveright;
+	private boolean left;
+	private boolean right;
 
-	public ManualHorizontal(double Newgo) {
+	public AutoIRDrivingPlusTurn(double goLeft, double goRight, boolean turnLeft, boolean turnRight) {
 		// Use requires() here to declare subsystem dependencies
-		// requires(Robot.exampleSubsystem);
-		go = Newgo;
+		// requires(Robot.dt);
+		Driveleft = goLeft;
+		Driveright = goRight;
+		left = turnLeft;
+		right = turnRight;
 	}
 
 	// Called just before this Command runs the first time
@@ -24,22 +30,20 @@ public class ManualHorizontal extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.dt.setHorizontalMotor(go);
+		Robot.dt.autoDrive(Driveleft, Driveright);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return Robot.ds.IRBeamBroken();
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {
-		Robot.dt.setHorizontalMotor(0);
+	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(left, right);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
+	protected void interrupted() {Robot.dt.autoDrive(0, 0);
 	}
 }

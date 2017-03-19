@@ -3,13 +3,11 @@ package org.usfirst.frc.team3023.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team3023.robot.commands.CatchGear;
 import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
+import org.usfirst.frc.team3023.robot.commands.IRReset;
 import org.usfirst.frc.team3023.robot.commands.IRSwitch;
-import org.usfirst.frc.team3023.robot.commands.ManualGear;
-import org.usfirst.frc.team3023.robot.commands.ManualHorizontal;
-import org.usfirst.frc.team3023.robot.commands.ManualReset;
 import org.usfirst.frc.team3023.robot.commands.MoveGear;
+import org.usfirst.frc.team3023.robot.commands.MoveHorizontal;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,24 +18,35 @@ public class OI {
 	public Joystick rightstick = new Joystick(1);
 	Button Right3 = new JoystickButton(rightstick, 3);
 	Button Right2 = new JoystickButton(rightstick, 2);
-	Button Right10 = new JoystickButton(rightstick, 10);
-	Button RightTrigger = new JoystickButton(rightstick, 1);
-	Button LeftTrigger = new JoystickButton(leftstick, 1);
-	//public boolean CamDone;
-	//public boolean CamOn; // public boolean Manual = false;
+	Button Right8 = new JoystickButton(rightstick, 8);
+	Button Right9= new JoystickButton(rightstick, 9);
+	Button Left2 = new JoystickButton(leftstick, 2);
+	Button Left3 = new JoystickButton(leftstick, 3);
+	Button Left4 = new JoystickButton(leftstick, 4);
+	Button Left5 = new JoystickButton(leftstick, 5);
+	// public boolean CamDone;
+	// public boolean CamOn; // public boolean Manual = false;
 
 	public OI() {
 		Right3.whenPressed(new ClimbNoLimit(1));
 		Right3.whenReleased(new ClimbNoLimit(0));
-		Right2.whenPressed(new IRSwitch());
+		Right2.whenPressed(new IRReset());
 		
-		// positive is forward
-
-		RightTrigger.whenPressed(new CatchGear());
-		Right10.whenPressed(new MoveGear(1));
-		Right10.whenReleased(new MoveGear(0));
-
-		//Left3.whenPressed(new ManualReset());
+		Left4.whenPressed(new MoveHorizontal(1));
+		Left4.whenReleased(new MoveHorizontal(0));
+		
+		Left5.whenPressed(new MoveHorizontal(-1));
+		Left5.whenReleased(new MoveHorizontal(0));
+		
+		Left3.whenPressed(new MoveGear(-1));
+		Left3.whenReleased(new MoveGear(0));
+		
+		Left2.whenPressed(new MoveGear(1));
+		Left2.whenReleased(new MoveGear(0));
+		
+		Right8.whenPressed(new IRSwitch(1));
+		
+		Right9.whenPressed(new IRSwitch(0));		
 	}
 
 	public Joystick getLeftStick() {
@@ -47,8 +56,10 @@ public class OI {
 	public Joystick getRightStick() {
 		return rightstick;
 	}
-	
-	public double getRightZ(){return (-rightstick.getZ() + 1)/2;}
+
+	public double getRightZ() {
+		return (-rightstick.getZ() + 1) / 2;
+	}
 }
 
 //// CREATING BUTTONS

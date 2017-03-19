@@ -6,8 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3023.robot.commands.CheckIR;
-import org.usfirst.frc.team3023.robot.commands.ClimbNoLimit;
+import org.usfirst.frc.team3023.robot.commands.AutoIRDriving;
+import org.usfirst.frc.team3023.robot.commands.AutoLeftPeg;
+import org.usfirst.frc.team3023.robot.commands.AutoMiddlePeg;
+import org.usfirst.frc.team3023.robot.commands.AutoMiddlePegPlusTurn;
+import org.usfirst.frc.team3023.robot.commands.AutoRightPeg;
+import org.usfirst.frc.team3023.robot.commands.AutoTimeDriving;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3023.robot.commands.InitValues;
 import org.usfirst.frc.team3023.robot.commands.JoystickDrive;
@@ -40,6 +44,7 @@ public class Robot extends IterativeRobot {
 	private Command startGear;
 
 	Command autonomousCommand;
+	// added <Command>
 	SendableChooser Autochooser;
 
 	/**
@@ -54,19 +59,20 @@ public class Robot extends IterativeRobot {
 		ds = new DigitalSensors();
 		gp = new GripPipeline();
 
-		new InitValues();
+		//new InitValues().start();
 		Robot.cs.InitCam();
 		// this is the original auto
 		// autonomousCommand=new AutoRun(0, false, 0);
 
 		//change to commands
+		//added <Command>
 		Autochooser = new SendableChooser();
-		Autochooser.addDefault("NoIR Auto", new AutoRun(0, false, false, false));
-		Autochooser.addObject("Left Peg Auto", new AutoRun(1, true, false, false));
-		Autochooser.addObject("Middle Peg, No Turn Auto", new AutoRun(2, false, false, false));
-		Autochooser.addObject("Middle Peg, Turn Left Auto", new AutoRun(2, true, true, false));
-		Autochooser.addObject("Middle Peg, Turn Right Auto", new AutoRun(2, true, false, true));
-		Autochooser.addObject("Right Peg Auto", new AutoRun(3, true, false, false));
+		Autochooser.addObject("No Auto", new AutoTimeDriving(0, 0, 0));
+		Autochooser.addObject("Left Peg Auto", new AutoIRDriving(.75, .75));
+		Autochooser.addDefault("Middle Peg, No Turn Auto", new AutoMiddlePeg());
+		Autochooser.addObject("Middle Peg, Turn Left Auto", new AutoMiddlePegPlusTurn(true, false));
+		Autochooser.addObject("Middle Peg, Turn Right Auto", new AutoMiddlePegPlusTurn(false, true));
+		Autochooser.addObject("Right Peg Auto", new AutoIRDriving(.75, .75));
 		SmartDashboard.putData("Auto mode", Autochooser);
 
 	}
@@ -77,9 +83,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-		new InitValues();
-		//Robot.pm.ropeClimb(0);
-
+		//new InitValues().start();
 	}
 
 	public void disabledPeriodic() {
@@ -135,9 +139,7 @@ public class Robot extends IterativeRobot {
 		}
 		teleopCommand = new JoystickDrive();
 		teleopCommand.start();
-		new InitValues();
-		new CheckIR();
-		//Robot.pm.ropeClimb(1);
+		//new InitValues().start();
 	}
 
 	/**
