@@ -32,15 +32,15 @@ public class OI {
 		Right3.whenReleased(new ClimbNoLimit(0));
 		Right2.whenPressed(new IRReset());
 		
-		Left4.whenPressed(new MoveHorizontal(1));
+		Left4.whenPressed(new MoveHorizontal(-1));
 		Left4.whenReleased(new MoveHorizontal(0));
 		
-		Left5.whenPressed(new MoveHorizontal(-1));
+		Left5.whenPressed(new MoveHorizontal(1));
 		Left5.whenReleased(new MoveHorizontal(0));
 		
 		Left3.whenPressed(new MoveGear(-1));
 		Left3.whenReleased(new MoveGear(0));
-		
+		//positive is down
 		Left2.whenPressed(new MoveGear(1));
 		Left2.whenReleased(new MoveGear(0));
 		

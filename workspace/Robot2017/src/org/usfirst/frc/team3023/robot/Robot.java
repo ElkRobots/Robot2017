@@ -13,6 +13,7 @@ import org.usfirst.frc.team3023.robot.commands.AutoMiddlePegPlusTurn;
 import org.usfirst.frc.team3023.robot.commands.AutoRightPeg;
 import org.usfirst.frc.team3023.robot.commands.AutoTimeDriving;
 import org.usfirst.frc.team3023.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3023.robot.commands.HorizontalLimits;
 import org.usfirst.frc.team3023.robot.commands.InitValues;
 import org.usfirst.frc.team3023.robot.commands.JoystickDrive;
 import org.usfirst.frc.team3023.robot.subsystems.CamSystem;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot {
 
 		//new InitValues().start();
 		Robot.cs.InitCam();
+		new HorizontalLimits().start();
 		// this is the original auto
 		// autonomousCommand=new AutoRun(0, false, 0);
 
@@ -68,11 +70,11 @@ public class Robot extends IterativeRobot {
 		//added <Command>
 		Autochooser = new SendableChooser();
 		Autochooser.addObject("No Auto", new AutoTimeDriving(0, 0, 0));
-		Autochooser.addObject("Left Peg Auto", new AutoIRDriving(.75, .75));
+		Autochooser.addObject("Left Peg Auto", new AutoLeftPeg());
 		Autochooser.addDefault("Middle Peg, No Turn Auto", new AutoMiddlePeg());
 		Autochooser.addObject("Middle Peg, Turn Left Auto", new AutoMiddlePegPlusTurn(true, false));
 		Autochooser.addObject("Middle Peg, Turn Right Auto", new AutoMiddlePegPlusTurn(false, true));
-		Autochooser.addObject("Right Peg Auto", new AutoIRDriving(.75, .75));
+		Autochooser.addObject("Right Peg Auto", new AutoRightPeg());
 		SmartDashboard.putData("Auto mode", Autochooser);
 
 	}

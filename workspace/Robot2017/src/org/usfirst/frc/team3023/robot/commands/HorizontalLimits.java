@@ -8,11 +8,11 @@ import org.usfirst.frc.team3023.robot.Robot;
 /**
  *
  */
-public class Climb extends Command {
+public class HorizontalLimits extends Command {
 
-    public Climb() {
+    public HorizontalLimits() {
         // Use requires() here to declare subsystem dependencies
-        //requires(Robot.dt); requires(Robot.ds);
+        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -21,17 +21,23 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pm.ropeClimb(.75);
+    	if(Robot.ds.isLeftSwitchHit()){
+    		Robot.pm.setHorizontalMotor(0);
+    		System.out.println("Left Llimit!");
+    	}
+    	if(Robot.ds.isRightSwitchHit()){
+    		Robot.pm.setHorizontalMotor(0);
+    		System.out.println("Right Limit!");
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.ds.isSwitchHit();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.pm.ropeClimb(0);
     }
 
     // Called when another command which requires one or more of the same

@@ -39,7 +39,7 @@ public class AutoIRDrivingPlusTurn extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(left, right);
+	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(left, right).start();
 	}
 
 	// Called when another command which requires one or more of the same

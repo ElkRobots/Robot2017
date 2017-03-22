@@ -16,19 +16,20 @@ public class GiveGear extends CommandGroup {
     	left = goLeft; right = goRight;
      
     	addParallel(new Print("Placing Gear..."));
-    	addSequential(new MoveGearTimed(1, 1.5));
-    	addParallel(new AutoTimeDriving(-.25, -.25, .5));
-    	addSequential(new MoveGearTimed(-1, 1.5));
+    	addSequential(new MoveGearTimed(-1, .6));
+    	addSequential(new MoveGearTimed(0, 1));
+    	addParallel(new AutoTimeDriving(-.25, -.25, 1.5));
+    	addSequential(new MoveGearTimed(1, .6));
     	if(left){
-    	/* Turn Left 90 */ addSequential(new AutoTimeDriving(-.5, .5, .5));
-		/* Go Left */ addSequential(new AutoTimeDriving(.75, .75, 3));
+    	/* Turn Left 90 */ addSequential(new AutoTimeDriving(-.25, .25, 1.5));
+		/* Go Left */ addSequential(new AutoTimeDriving(.25, .25, 3));
 		/* Turn Right 90 */ addSequential(new AutoTimeDriving(.5, -.5, .5));
-		/* Go Forward */ addSequential(new AutoTimeDriving(.75, .75, 3));}
+		/* Go Forward */ addSequential(new AutoTimeDriving(.25, .25, 3));}
     	if(right){
-    	/* Turn Right 90 */ addSequential(new AutoTimeDriving(.5, -.5, .5));
-		/* Go Right */ addSequential(new AutoTimeDriving(.75, .75, 3));
-		/* Turn Left 90 */ addSequential(new AutoTimeDriving(-.5, .5, .5));
-		/* Go Forward */ addSequential(new AutoTimeDriving(.75, .75, 3));}}
+    	/* Turn Right 90 */ addSequential(new AutoTimeDriving(.25, -.25, 1.25));
+		/* Go Right */ addSequential(new AutoTimeDriving(.25, .25, 3));
+		/* Turn Left 90 */ addSequential(new AutoTimeDriving(-.25, .25, .5));
+		/* Go Forward */ addSequential(new AutoTimeDriving(.25, .25, 3));}}
     
 //    protected void initialize(){Robot.cs.ThreadSleep(0);}
     	

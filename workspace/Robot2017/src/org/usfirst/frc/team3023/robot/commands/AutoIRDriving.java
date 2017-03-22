@@ -35,7 +35,7 @@ public class AutoIRDriving extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(false, false);
+	protected void end() {Robot.dt.autoDrive(0, 0); new GiveGear(false, false).start();
 	}
 
 	// Called when another command which requires one or more of the same

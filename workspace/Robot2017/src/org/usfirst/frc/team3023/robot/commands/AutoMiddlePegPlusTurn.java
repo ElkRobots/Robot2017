@@ -23,7 +23,7 @@ public class AutoMiddlePegPlusTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	new AutoIRDrivingPlusTurn(.75, .75, left, right);
+    	new AutoIRDrivingPlusTurn(.25, .25, left, right).start();
     }
 
     // Make this return true when this Command no longer needs to run execute()

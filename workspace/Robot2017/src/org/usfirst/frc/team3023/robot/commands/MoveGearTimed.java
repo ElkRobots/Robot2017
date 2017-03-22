@@ -10,15 +10,15 @@ import org.usfirst.frc.team3023.robot.Robot;
  */
 public class MoveGearTimed extends Command {
 
-	private int p;
-	private float wait;
+	private double p;
+	private double wait;
 
 	// private Timer moveTime = new Timer();
-	public MoveGearTimed(int newGo, double Newwait) {
+	public MoveGearTimed(double newGo, double Newwait) {
 		// Use requires() here to declare subsystem dependencies
 		// requires(Robot.dt);
 		p = newGo;
-		Newwait = wait;
+		wait = Newwait;
 		setTimeout(wait);
 	}
 
